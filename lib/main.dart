@@ -13,6 +13,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uyirmeiseithigal/categorynews.dart';
+import 'package:uyirmeiseithigal/colors_util.dart';
 import 'package:uyirmeiseithigal/gallery.dart';
 import 'package:uyirmeiseithigal/joiningpage.dart';
 import 'package:uyirmeiseithigal/seithipirivu.dart';
@@ -158,12 +159,12 @@ class _MyHomePageState extends State<MyHomePage> {
     _subcategoryVisibilityList = List<bool>.filled(100, false);
     categorycontainercolor = List.filled(
       1000,
-      hexStringToColor("808080"),
+      hexStringToColor("D3D3D3"),
     );
 
     subcategorycontainercolor = List.filled(
       1000,
-      hexStringToColor("808080"),
+      hexStringToColor("D3D3D3"),
     );
 
     redtowhitesubcategorycolor = List.filled(
@@ -249,8 +250,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         shrinkWrap: true,
                         itemCount: relatednewsjsonList["posts"].length,
                         scrollDirection: Axis.horizontal,
-                        // physics: NeverScrollableScrollPhysics(),
-                        // shrinkWrap: true,
+                         
                         itemBuilder: (context, index) {
                           bool isEqual = watchednewsid.any((i) =>
                               i['id'] ==
@@ -297,7 +297,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 "[]" ||
                                             relatednewsjsonList["posts"]
                                                         [index]["image"]
-                                                 [0] ==
+                                                ==
                                                 null) {
                                         return Container();
                                       } else {
@@ -490,9 +490,9 @@ class _MyHomePageState extends State<MyHomePage> {
               changeContainerColor(0);
               _subcategoryVisibilityList = List.filled(100, false);
               redtowhitesubcategorycolor = List.filled(1000, Colors.black);
-              subcategorycontainercolor = List.filled(1000, Colors.white);
+              subcategorycontainercolor = List.filled(1000, hexStringToColor("D3D3D3"),);
               redtowhitetextcolor = List.filled(1000, Colors.black);
-              categorycontainercolor = List.filled(1000, Colors.white);
+              categorycontainercolor = List.filled(1000, hexStringToColor("D3D3D3"),);
               homecolor = Colors.white;
               seithigalcolor = Colors.white;
               cinemacolor = Colors.white;
@@ -502,13 +502,13 @@ class _MyHomePageState extends State<MyHomePage> {
             }
           },
           drawer: Drawer(
-              backgroundColor: const Color.fromARGB(255, 160, 158, 158),
+              backgroundColor: hexStringToColor("D3D3D3"),  
               width: 225,
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.zero),
               ),
               child: Scaffold(
-                backgroundColor: hexStringToColor("808080"),
+                backgroundColor: hexStringToColor("D3D3D3"),
                 body: SingleChildScrollView(
                   child: Container(
                     child: Column (
@@ -563,7 +563,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                           child: Container(
                             color:
-                                isRedContainerClicked ? Colors.red : hexStringToColor("808080"),
+                                isRedContainerClicked ? Colors.red : hexStringToColor("D3D3D3"),
                             height: 40,
                             child: Align(
                                 alignment: Alignment.centerLeft,
@@ -604,16 +604,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                         );
                                         categorycontainercolor = List.filled(
                                           1000,
-                                          hexStringToColor("808080"),
+                                          hexStringToColor("D3D3D3"),
                                         );
                                         _subcategoryVisibilityList =
                                             List<bool>.filled(100, false);
                     
                                         categorycontainercolor[indexa] =
                                             (categorycontainercolor[indexa] ==
-                                                    hexStringToColor("808080"))
+                                                    hexStringToColor("D3D3D3"))
                                                 ? hexStringToColor("000000")
-                                                : hexStringToColor("808080");
+                                                : hexStringToColor("D3D3D3");
                     
                                         redtowhitetextcolor[indexa] =
                                             (redtowhitetextcolor[indexa] ==
@@ -633,7 +633,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         redtowhitesubcategorycolor =
                                             List.filled(1000, Colors.black);
                                         subcategorycontainercolor =
-                                            List.filled(1000, hexStringToColor("808080"));
+                                            List.filled(1000, hexStringToColor("D3D3D3"));
                                       });
                                     },
                                     child: Container(
@@ -709,14 +709,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                 Colors.black);
                                                         subcategorycontainercolor =
                                                             List.filled(1000,
-                                                                Colors.white);
+                                                                hexStringToColor("D3D3D3"),);
                                                         subcategorycontainercolor[
                                                                 indexs] =
                                                             (subcategorycontainercolor[
                                                                         indexs] ==
-                                                                    Colors.white)
-                                                                ? Colors.red
-                                                                : Colors.white;
+                                                                    hexStringToColor("D3D3D3"))
+                                                                ? hexStringToColor("000000")
+                                                                : hexStringToColor("D3D3D3");
                     
                                                         redtowhitesubcategorycolor[
                                                                 indexs] =
@@ -839,7 +839,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         },
                         child: Container(
                           color:
-                              isRedContainerClicked ? Colors.red : Colors.white,
+                              isRedContainerClicked ? Colors.red : hexStringToColor("D3D3D3"),
                           height: 40,
                           child: Align(
                               alignment: Alignment.centerLeft,
@@ -848,6 +848,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 child: Text(
                                   'நீங்களும் நிருபர் ஆகலாம்',
                                   style: TextStyle(
+                                    fontWeight: FontWeight.bold,
                                       color: isRedContainerClicked
                                           ? Colors.white
                                           : Colors.black),
@@ -952,7 +953,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   onWillPop: () async {
                     setState(() {
-                      _showBottomSheet(context);
+                    //  _showBottomSheet(context);
                     });
 
                     return false;
@@ -1348,7 +1349,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                             "[]" ||
                                                         relatednewsjsonList["posts"]
                                                                         [index][
-                                                                    "image"][0]
+                                                                    "image"] 
                                                                  ==
                                                             null) {
                                                       return Container();
@@ -1362,15 +1363,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                             "posts"]
                                                                         [index]
                                                                     ["image"]
-                                                                [0],
+                                                              ,
                                                       );
                                                     }
                                                   }),
                                                   Container(
                                                     width: 350,
                                                     child: Text(
-                                                      relatednewsjsonList["posts"]
-                                                          [index]["title"],
+                                                      (relatednewsjsonList["posts"]
+                                                          [index]["title"]).toString(),
                                                       style: TextStyle(
                                                         color: Colors.red,
                                                         fontWeight: FontWeight.bold,
@@ -1678,13 +1679,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   //   ),
                   Flexible(
                     child: Container(
+                      alignment: Alignment.center,
                       width: 60,
                       height: 50,
                       decoration: BoxDecoration(
                         color: Color.fromARGB(255, 7, 21, 216),
                         shape: BoxShape.circle,
                       ),
-                      child: IconButton(
+                      child: IconButton(alignment: Alignment.center,
                         icon: isOpen
                             ? SvgPicture.asset(
                                 'assets/images/ninedots.svg',
@@ -1698,7 +1700,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                         onPressed: () {
                           setState(() {
-                            _showBottomSheet(context);
+                          // _showBottomSheet(context);
                             //showDialog(
                             //  context: context,
                             //  builder: (ctx) => AlertDialog(
@@ -1802,12 +1804,4 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
   
-  hexStringToColor(String hexColor) {
-  hexColor = hexColor.toUpperCase().replaceAll("#", "");
-  if (hexColor.length == 6) {
-    // ignore: prefer_interpolation_to_compose_strings
-    hexColor = "FF" + hexColor;
-  }
-  return Color(int.parse(hexColor, radix: 16));
-}
 }

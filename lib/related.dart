@@ -805,11 +805,11 @@ class _RelatedState extends State<Related> {
 
                     Builder(builder: (context) {
                       if (widget.relatednewsjsonList["posts"][widget.index]
-                                      ["image_data"]
+                                      ["image"]
                                   .toString() ==
                               "[]" ||
                           widget.relatednewsjsonList["posts"][widget.index]
-                                  ["image_data"][0]["original_url"] ==
+                                  ["image"] ==
                               null) {
                         return Container();
                       } else {
@@ -818,7 +818,7 @@ class _RelatedState extends State<Related> {
                           fit: BoxFit.cover,
                           width: double.infinity,
                           imageUrl: widget.relatednewsjsonList["posts"]
-                              [widget.index]["image_data"][0]["original_url"],
+                              [widget.index]["image"],
                         );
                       }
                     }),

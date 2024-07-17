@@ -12,6 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:uyirmeiseithigal/colors_util.dart';
 import 'package:uyirmeiseithigal/gallery.dart';
 import 'package:uyirmeiseithigal/joiningpage.dart';
 import 'package:uyirmeiseithigal/main.dart';
@@ -207,9 +208,9 @@ class _CategoryPageState extends State<CategoryPage> {
               changeContainerColor(0);
               _subcategoryVisibilityList = List.filled(100, false);
               redtowhitesubcategorycolor = List.filled(1000, Colors.black);
-              subcategorycontainercolor = List.filled(1000, Colors.white);
+              subcategorycontainercolor = List.filled(1000, hexStringToColor("D3D3D3"),);
               redtowhitetextcolor = List.filled(1000, Colors.black);
-              categorycontainercolor = List.filled(1000, Colors.white);
+              categorycontainercolor = List.filled(1000, hexStringToColor("D3D3D3"),);
               homecolor = Colors.white;
               seithigalcolor = Colors.white;
               cinemacolor = Colors.white;
@@ -756,12 +757,11 @@ class _CategoryPageState extends State<CategoryPage> {
                                     children: [
                                       Builder(builder: (context) {
                                         if (widget.relatednewsjsonList["posts"]
-                                                        [index]["image_data"]
+                                                        [index]["image"]
                                                     .toString() ==
                                                 "[]" ||
                                             widget.relatednewsjsonList["posts"]
-                                                        [index]["image_data"][0]
-                                                    ["original_url"] ==
+                                                        [index]["image"] ==
                                                 null) {
                                           return Container();
                                         } else {
@@ -772,8 +772,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                             imageUrl:
                                                 widget.relatednewsjsonList[
                                                             "posts"][index]
-                                                        ["image_data"][0]
-                                                    ["original_url"],
+                                                        ["image"],
                                           );
                                         }
                                       }),
