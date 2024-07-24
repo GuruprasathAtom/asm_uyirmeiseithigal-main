@@ -983,8 +983,10 @@ class _MyHomePageState extends State<MyHomePage> {
                        Padding(
                          padding: const EdgeInsets.all(8.0),
                          child: Container(
-                         height: 200,
-                         child: Image.asset('assets/images/advertisement.jpg'),
+                         height: 300,
+                         child: Image.asset('assets/images/advertisement.jpg',
+                         width: double.infinity,
+                         fit: BoxFit.cover,),
                          ),
                        ),
                        ],
