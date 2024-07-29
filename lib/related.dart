@@ -777,7 +777,7 @@ class _RelatedState extends State<Related> {
                     //   ),
                     // ),
                     Builder(builder: (context) {
-                      if (widget.relatednewsjsonList["posts"][widget.index]
+                      if (widget.relatednewsjsonList["posts"][widget.index]//
                               ["video"] !=
                           null) {
                         _controller = YoutubePlayerController(
@@ -821,7 +821,8 @@ class _RelatedState extends State<Related> {
                               [widget.index]["image"],
                         );
                       }
-                    }),
+                      }
+                     ),
                     Builder(builder: (context) {
                       String htmlContent = widget.relatednewsjsonList["posts"]
                           [widget.index]['content'];

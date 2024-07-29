@@ -459,7 +459,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
-            backgroundColor: hexStringToColor("5099ef"),
+            backgroundColor: Colors.white,
             surfaceTintColor: Colors.transparent,
             leading: Builder(
               builder: (BuildContext context) {
@@ -467,7 +467,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   shape: CircleBorder(),
                   clipBehavior: Clip.antiAlias,
                   child: Container(
-                    color: hexStringToColor("5099ef"),
+                    color: Colors.white,
                     child: IconButton(
                       color: Colors.grey[850],
                       icon: const Icon(Icons.menu),
@@ -955,42 +955,121 @@ class _MyHomePageState extends State<MyHomePage> {
 
                     return false;
                   },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    decoration: BoxDecoration(
-                   gradient: LinearGradient(colors: [
-                   hexStringToColor("5099ef"),
-                   hexStringToColor("17e3cb"),
-                   hexStringToColor("e8f269")
-                    ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-                    child: SingleChildScrollView(
+                  child: Scaffold(
+                    body: CustomScrollView(
                       controller: _scrollController,
-                      child: Column(children: [
-                        // Text(jsonList.length.toString()),
-                     Column(
-                       children: [
-                         Visibility(
-                           visible: false,
-                           child: Align(
-                             alignment: Alignment.centerLeft,
-                             child: FxBreadCrumbNavigator(
-                               firstRoute: "Home",
-                             ),
-                           ),
+                      slivers: [
+                      SliverAppBar(
+                       bottom: PreferredSize(preferredSize: Size.fromHeight(14), 
+                        child: Container(
+                          //
+                          // ignore: sort_child_properties_last
+                           child: Container(
+                                    child: Align(heightFactor: double.minPositive,
+                                      alignment: Alignment.center,
+                                      child: Container(
+                                        height: 45,
+                                        decoration: BoxDecoration(
+                                          color: hexStringToColor("5099ef"),
+                                          border: Border.all(
+                                            color: hexStringToColor("5099ef"),
+                                            width: 2.0,
+                                          ),
+                                          borderRadius: BorderRadius.circular(4),
+                                        ),
+                                        padding: EdgeInsets.all(10.0),
+                                        child: Text(
+                                          'செய்தி துளிகள்',
+                                          style: TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                          width: double.infinity,
+                          padding: EdgeInsets.only(top: 5, bottom: 20),
+                         decoration: BoxDecoration(
+                         color: Colors.white,
+                         borderRadius: 
+                         BorderRadius.only(
+                           topLeft: Radius.circular(20),
+                           topRight: Radius.circular(20),
+                         )
                          ),
-                         
-                       Padding(
-                         padding: const EdgeInsets.all(8.0),
-                         child: Container(
-                         height: 300,
-                         child: Image.asset('assets/images/advertisement.jpg',
-                         width: double.infinity,
-                         fit: BoxFit.cover,),
-                         ),
+                        ),
                        ),
-                       ],
-                     ),
+                          pinned: true,
+                          backgroundColor: hexStringToColor("5099ef"),
+                        expandedHeight: 300,
+                        flexibleSpace: FlexibleSpaceBar(
+                          background: ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  child: Column(
+                                    children: [
+                                      Builder(
+                                        builder: (context) {
+                                          if (jsonList[0]['image'] == null) {
+                                              return  Container();
+                                          }else{
+                                             return CachedNetworkImage(
+                                              fit: BoxFit.cover,
+                                              width: double.infinity,
+                                              imageUrl: jsonList[0]['image'],
+                                              placeholder: (context, url) => Center(
+                                                    child: Column(
+                                                      children: [
+                                                        Image.asset(
+                                                          width: 250,
+                                                          height: 200,
+                                                          'assets/images/uyirmeimainlogo.jpg',
+                                                          fit: BoxFit.contain,
+                                                        ),
+                                                        Center(
+                                                          child:
+                                                              CircularProgressIndicator(),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ));
+                                          }
+                                         
+                                        }
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                              itemCount: intvalue),
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: Column(children: [
+                        // Text(jsonList.length.toString()),
+                            // Column(
+                            //  children: [
+                            //    Visibility(
+                            //      visible: false,
+                            //      child: Align(
+                            //        alignment: Alignment.centerLeft,
+                            //        child: FxBreadCrumbNavigator(
+                            //          firstRoute: "Home",
+                            //        ),
+                            //      ),
+                            //    ),
+                            //    
+                            //    // Padding(
+                            //    //   padding: const EdgeInsets.all(8.0),
+                            //    //   child: Container(
+                            //    //   height: 200,
+                            //    //   child: Image.asset('assets/images/advertisement.jpg',
+                            //    //   width: double.infinity,
+                            //    //   fit: BoxFit.cover,),
+                            //    //   ),
+                            //    // ),
+                            //  ],
+                            //   ),
                             // SizedBox(height: 20,),
                             // Padding(
                             //        padding: const EdgeInsets.all(16.0),   
@@ -1040,39 +1119,39 @@ class _MyHomePageState extends State<MyHomePage> {
                           decoration: BoxDecoration(borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
                           color: Colors.white),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.only(left: 8,right: 8,top: 0,bottom: 8),
                             child: Column(
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 15.0, left: 8.0, right: 8.0),
-                                  child: Column(
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Container(
-                                          height: 45,
-                                          decoration: BoxDecoration(
-                                            color: Colors.blue,
-                                            border: Border.all(
-                                              color: Colors.blue,
-                                              width: 2.0,
-                                            ),
-                                            borderRadius: BorderRadius.circular(4),
-                                          ),
-                                          padding: EdgeInsets.all(10.0),
-                                          child: Text(
-                                            'செய்தி துளிகள்',
-                                            style: TextStyle(color: Colors.white),
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                          height: 0, child: Divider(color: Colors.blue))
-                                    ],
-                                  ),
-                                ),
-                                Padding(
+                               // Padding(
+                               //   padding: const EdgeInsets.only(
+                               //       top: 15.0, left: 8.0, right: 8.0),
+                               //   child: Column(
+                               //     children: [
+                               //       Align(
+                               //         alignment: Alignment.centerLeft,
+                               //         child: Container(
+                               //           height: 45,
+                               //           decoration: BoxDecoration(
+                               //             color: Colors.blue,
+                               //             border: Border.all(
+                               //               color: Colors.blue,
+                               //               width: 2.0,
+                               //             ),
+                               //             borderRadius: BorderRadius.circular(4),
+                               //           ),
+                               //           padding: EdgeInsets.all(10.0),
+                               //           child: Text(
+                               //             'செய்தி துளிகள்',
+                               //             style: TextStyle(color: Colors.white),
+                               //           ),
+                               //         ),
+                               //       ),
+                               //       Container(
+                               //           height: 0, child: Divider(color: Colors.blue))
+                               //     ],
+                               //   ),
+                               // ),
+                            Padding(
                               padding: const EdgeInsets.all(8.0),   
                               child: ListView.builder(
                                   shrinkWrap: true,
@@ -1171,13 +1250,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                     child: Text('மேலும் படிக்க')),
                                 Expanded(child: Divider(color: Colors.grey)),
                               ]),
-                            ),
+                             ),
                             
-                            Container(
-                              height: 200,
-                              child: Image.asset('assets/images/advertisement.jpg'),
-                            ),
-                            Padding(
+                                Container(
+                                  height: 200,
+                                  child: Image.asset('assets/images/advertisement.jpg'),
+                                ),
+                                Padding(
                               padding: const EdgeInsets.only(
                                   top: 8.0, left: 8.0, right: 8.0),
                               child: Row(children: [
@@ -1495,17 +1574,22 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                       ]),
+                      )
+                      ],
+                      
+                    
                     ),
                   ),
                 ),
-          bottomNavigationBar: BottomAppBar(
+          bottomNavigationBar: BottomAppBar(//padding: EdgeInsets.zero,
             color:Color.fromRGBO(241, 242, 243, 1),
             child: Container(
               padding: EdgeInsets.zero,
               height: 100,
+              width: double.infinity,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                //crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   InkWell(
                     onTap: () {
@@ -1524,6 +1608,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     child: Container(
                       width: 60,
+                      height: 60,
                       child: Column(crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -1544,6 +1629,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
+                  SizedBox(width: 10,),
                   InkWell(
                     onTap: () {
                       Navigator.push(
@@ -1562,6 +1648,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     child: Container(
                       width: 60,
+                      height: 60,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -1579,6 +1666,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
+                  SizedBox(width: 10,),
                   //   Container(
                   //     width: 50,
                   //     decoration: BoxDecoration(
@@ -1657,10 +1745,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     ),
                   ),
+                  SizedBox(width: 5,),
                   InkWell(
                     onTap: () {},
                     child: Container(
-                      width: 60,
+                      width: 60,height: 60,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -1678,10 +1767,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
+                  SizedBox(width: 5,),
                   InkWell(
                     onTap: () {},
                     child: Container(
-                      width: 87,
+                      width: 87,height: 60,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -1706,7 +1796,7 @@ class _MyHomePageState extends State<MyHomePage> {
           floatingActionButton: _isAtTop
               ? null
               : FloatingActionButton(
-                  backgroundColor: Colors.red,
+                  backgroundColor: hexStringToColor("5099ef"),
                   onPressed: _scrollToTop,
                   child: Icon(Icons.arrow_upward, color: Colors.white),
                 ),
