@@ -472,17 +472,18 @@ import 'package:uyirmeiseithigal/widgets/expandableContent.dart';
               leading: Builder(
                 builder: (BuildContext context) {
                   return Material(
-                    shape: CircleBorder(),
+                     
                     clipBehavior: Clip.antiAlias,
                     child: Container(
                       color: hexStringToColor("343838"),
-                      child: IconButton(
-                        color: Colors.white,
-                        icon: const Icon(Icons.menu),
-                        onPressed: () {
-                          Scaffold.of(context).openDrawer();
+                      child: InkWell(
+                        onTap: () {
+                              Scaffold.of(context).openDrawer();
                         },
-                        tooltip: 'Categories',
+                        child: Icon(
+                          Icons.menu,color: Colors.white,
+                          
+                        ),
                       ),
                     ),
                   );
@@ -1186,7 +1187,7 @@ import 'package:uyirmeiseithigal/widgets/expandableContent.dart';
                               //          itemCount: intvalue),
                               //        ),
                           Container(
-                            decoration: BoxDecoration(borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
+                            decoration: BoxDecoration(
                             color: Colors.white),
                             child: Padding(
                               padding: const EdgeInsets.only(left: 8,right: 8,top: 0,bottom: 8),
@@ -1221,94 +1222,94 @@ import 'package:uyirmeiseithigal/widgets/expandableContent.dart';
                                 //     ],
                                 //   ),
                                 // ),
-                               Padding(
-                                padding: const EdgeInsets.all(8.0),   
-                                child: ListView.builder(
-                                    shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemBuilder: (context, index) {
-                                      return Container(
-                                        child: Row(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            jsonList[index]['image'] != null
-                                 ? CachedNetworkImage(
-                                     fit: BoxFit.contain,
-                                     width: 100,
-                                     height: 100,
-                                     imageUrl: jsonList[index]['image'],
-                                     placeholder: (context, url) => Center(
-                                       child: Column(
-                                         children: [
-                                           Image.asset(
-                                             width: 100,
-                                             height: 100,
-                                             'assets/images/uyirmeimainlogo.jpg',
-                                             fit: BoxFit.contain,
-                                           ),
-                                           Center(
-                                             child: CircularProgressIndicator(),
-                                           ),
-                                         ],
+                               ListView.builder(
+                                   shrinkWrap: true,
+                                   physics: NeverScrollableScrollPhysics(),
+                                   itemBuilder: (context, index) {
+                                     return Container(
+                                       decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(40)),
+                                       //color:Colors.grey.shade100,
                                        ),
-                                     ),
-                                   ):Container(
-                                     width: 100,
-                                     height: 200,
-                                     color: Colors.grey[300],
-                                     child: Icon(
-                                       Icons.image,
-                                       size: 50,
-                                       color: Colors.grey[700],
-                                     ),
-                                   ),
-                                   SizedBox(width: 8.0,),
-                                   Expanded(
-                                     child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                 children: [
-                                   Padding(
-                                     padding: const EdgeInsets.all(8.0),
-                                     child: Text(
-                                       jsonList[index]['title'],
-                                       style: TextStyle(
-                                           fontSize: 20.0,
-                                           color: Colors.red,
-                                           fontWeight: FontWeight.bold),
-                                     ),
-                                   ),
-                                   Padding(
-                                     padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
-                                     child: Row(
+                                       child: Row(
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: [
+                                           jsonList[index]['image'] != null
+                                       ? CachedNetworkImage(
+                                           fit: BoxFit.contain,
+                                           width: 100,
+                                           height: 100,
+                                           imageUrl: jsonList[index]['image'],
+                                           placeholder: (context, url) => Center(
+                                             child: Column(
+                                               children: [
+                                                 Image.asset(
+                                                   width: 100,
+                                                   height: 100,
+                                                   'assets/images/uyirmeimainlogo.jpg',
+                                                   fit: BoxFit.contain,
+                                                 ),
+                                                 Center(
+                                                   child: CircularProgressIndicator(),
+                                                 ),
+                                               ],
+                                             ),
+                                           ),
+                                         ):Container(
+                                           width: 100,
+                                           height: 200,
+                                           color: Colors.grey[300],
+                                           child: Icon(
+                                             Icons.image,
+                                             size: 50,
+                                             color: Colors.grey[700],
+                                           ),
+                                         ),
+                                         SizedBox(width: 8.0,),
+                                         Expanded(
+                                           child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                        children: [
-                                         Text(DateFormat('dd.MM.yyyy').format(
-                                             DateTime.parse(jsonList[index]['created_at']))),
-                                         Text(' - '),
-                                         Text(DateFormat('HH:mm a').format(
-                                             DateTime.parse(jsonList[index]['created_at']))),
-                                       ],
-                                     ),
-                                   ),
-                                   ExpandableContent(content: jsonList[index]['content']),
-                                   Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(children: [
-                                  Expanded(
-                                      child: Divider(
-                                    color: Colors.grey, 
-                                  )
-                                  ),]
-                                  ),
-                                  ),
-                                   ]
-                                     ),
-                                     ),
-                                   ],
-                                 ),
-                               );
-                             },
-                                    itemCount: intvalue),
-                                ),
+                                         Padding(
+                                           padding: const EdgeInsets.all(8.0),
+                                           child: Text(
+                                             jsonList[index]['title'],
+                                             style: TextStyle(
+                                                 fontSize: 20.0,
+                                                 color: Colors.red,
+                                                 fontWeight: FontWeight.bold),
+                                           ),
+                                         ),
+                                         Padding(
+                                           padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
+                                           child: Row(
+                                             children: [
+                                               Text(DateFormat('dd.MM.yyyy').format(
+                                                   DateTime.parse(jsonList[index]['created_at']))),
+                                               Text(' - '),
+                                               Text(DateFormat('HH:mm a').format(
+                                                   DateTime.parse(jsonList[index]['created_at']))),
+                                             ],
+                                           ),
+                                         ),
+                                         ExpandableContent(content: jsonList[index]['content']),
+                                         Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: Row(children: [
+                                           Expanded(
+                                            child: Divider(
+                                          color: Colors.grey, 
+                                                 )
+                                                 ),]
+                                                 ),
+                                                 ),
+                                                  ]
+                                                    ),
+                                                    ),
+                                                  ],
+                                                ),
+                                    );
+                                  },
+                          itemCount: intvalue),
                                 Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Row(children: [
@@ -1656,25 +1657,24 @@ import 'package:uyirmeiseithigal/widgets/expandableContent.dart';
                       ),
                     ),
                   ),
-            bottomNavigationBar: 
-            Container(
-              height: 90,
-              decoration: BoxDecoration(borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                            color: hexStringToColor("343838"),),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 9
+            bottomNavigationBar: BottomAppBar(
+              //color:hexStringToColor("343838"),
+              padding: EdgeInsets.zero,
+              child: Container(
+                width: double.infinity ,
+                decoration: BoxDecoration(
+                color: hexStringToColor("343838"),
+                borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20.0),
+                topRight: Radius.circular(20.0),
                 ),
-                child: GNav(//padding: EdgeInsets.zero,
-                  color:hexStringToColor("A6A6A6"),
-                  backgroundColor: hexStringToColor("343838"),
-                  activeColor: Colors.white,
-                  tabBackgroundColor: Colors.grey.shade800,
-                  curve: Curves.decelerate,
-                  //shape: ,
-                  gap: 0,
-                  onTabChange: (index){
-                    if(index ==0){
-                      Navigator.push(
+              ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Gallery(
@@ -1686,9 +1686,34 @@ import 'package:uyirmeiseithigal/widgets/expandableContent.dart';
                                 galleryresponselist: galleryresponselist,
                               ),
                             ));
-                    }
-                    if(index==1){
-                      Navigator.push(
+                      },
+                      child: Container(
+                        width: 60,
+                        height: 60,
+                        child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/icons/1976052_gallery_image_images_photo_picture_icon.svg',
+                              height: 25,
+                              width: 25,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              'வெப்',
+                              style: TextStyle(fontSize: 9, 
+                              color: Colors.white, 
+                              fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 5,),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => CategoryPage(
@@ -1701,38 +1726,151 @@ import 'package:uyirmeiseithigal/widgets/expandableContent.dart';
                             ),
                           ),
                         );
-                    }
-                    if(index==2){
-                      setState(() {
+                      },
+                      child: Container(
+                        width: 60,
+                        height: 60,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/icons/video.svg',
+                              height: 25,
+                              width: 25,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              'சினிமா',
+                              style: TextStyle(fontSize: 9, color: Colors.white,fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 5,),
+                    //   Container(
+                    //     width: 50,
+                    //     decoration: BoxDecoration(
+                    //       color: Colors.red,
+                    //       shape: BoxShape.circle,
+                    //     ),
+                    //     child: IconButton(
+                    //       icon: SvgPicture.asset(
+                    //         'assets/images/ninedots.svg',
+                    //         height: 50,
+                    //         width: 50,
+                    //         color: Colors.white,
+                    //       ),
+                    //       onPressed: () {
+                    //         // Handle tap
+                    //       },
+                    //     ),
+                    //   ),
+                    Container(
+                      width: 60,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 7, 21, 216),
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
+                        icon: isOpen
+                            ? SvgPicture.asset(
+                                'assets/images/ninedots.svg',
+                                height: 30,
+                                width: 30,
+                                color: Colors.white,
+                              )
+                            : Icon(
+                                Icons.close,
+                                color: Colors.white,
+                              ),
+                        onPressed: () {
+                          setState(() {
                             _showBottomSheet(context);
-                      });
-                    }
-                    if(index==3){
-                      
-                    }
-                    if(index==4){
-                      
-                    }
+                            //showDialog(
+                            //  context: context,
+                            //  builder: (ctx) => AlertDialog(
+                            //    title: Center(child: const Text("Top News")),
+                            //    content: Column(
+                            //      children: [
+                            //        const Text(
+                            //            "You've missed the top news. Check it out!"),
+                            //        const Divider(),
+                            //      ],
+                            //    ),
+                            //    actions: [
+                            //      TextButton(
+                            //        onPressed: () {
+                            //          Navigator.of(ctx).pop();
+                            //          setState(() {
+                            //            isOpen = !isOpen;
+                            //          });
+                            //        },
+                            //        child: Container(
+                            //          color: Colors.green,
+                            //          padding: const EdgeInsets.all(14),
+                            //          child: const Text("okay"),
+                            //        ),
+                            //      ),
+                            //    ],
+                            //  ),
+                            //);
                 
-                    
-                  },
-                  tabs: [
-                    GButton(icon: Icons.photo_library_sharp,
-                    text: 'வெப்',
+                            //Navigator.push(
+                            //    context,
+                            //    MaterialPageRoute(
+                            //      builder: (context) => ImageTest(),
+                            //    ));
+                          });
+                        },
+                      ),
                     ),
-                    GButton(icon: Icons.movie_filter_rounded,
-                    text:  'சினிமா',
+                    SizedBox(width: 5,),
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: 60,height: 60,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/images/bbook.svg',
+                              height: 25,
+                              width: 25,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              'புத்தங்கள்',
+                              style: TextStyle(fontSize: 9, color: Colors.white, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                    GButton(icon: Icons.home_rounded,
-                    //text:  '',
+                    SizedBox(width: 5,),
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: 60,height: 60,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SvgPicture.asset(
+                                'assets/images/info_icon.svg',
+                                height: 29,
+                                width: 29,
+                                color: Colors.white,
+                              ),
+                            Text(
+                              'பற்றி',
+                              style: TextStyle(fontSize: 9, color: Colors.white,fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                    GButton(icon: Icons.book_rounded,
-                    text:  'புத்தங்கள்',
-                    ),
-                    //GButton(icon: Icons.info_outlined,iconColor: Colors.white,
-                    ////text:  'சினிமா',
-                    //)
-                  ]
+                  ],
                 ),
               ),
             ),
